@@ -38,19 +38,32 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <!-- <HelloWorld/> -->
+      <!-- <ClientData/> -->
+      <!-- <CarDetails/> -->
+      <Form1/>
+      <!-- <test2/> -->
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+// import HelloWorld from './components/HelloWorld';
+// import ClientData from './subcomponents/ClientData.vue';
+// import CarDetails from './subcomponents/CarDetails.vue';
+import Form1 from './components/Form1.vue';
+// import test2 from './components/test2.vue';
+
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    // HelloWorld,
+    // ClientData,
+    // CarDetails,
+    Form1,
+    // test2
   },
 
   data: () => ({
