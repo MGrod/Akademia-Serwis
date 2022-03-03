@@ -13,6 +13,55 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <script>
+      window.coachViewContext = {
+        binding: {
+          value: {
+            name: '',
+            surname: '',
+            adress: '',
+            phoneNumber: '',
+            email: '',
+            price: '',
+          },  
+          get(prop) {
+            return this[prop]
+          }
+        },
+        options: {
+          car: {
+            value: "",
+            get(prop) {
+              return this[prop]
+            }
+          },
+          engine: {
+            value: "",
+            get(prop) {
+              return this[prop]
+            }
+          },
+          color: {
+            value: "",
+            get(prop) {
+              return this[prop]
+            }
+          },
+          type: {
+            value: "",
+            get(prop) {
+              return this[prop]
+            }
+          },
+          transmission: {
+            value: "",
+            get(prop) {
+              return this[prop]
+            }
+          },
+        }
+      }
+    </script>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>

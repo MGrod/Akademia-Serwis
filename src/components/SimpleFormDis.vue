@@ -1,5 +1,5 @@
 <template>
-  <validation-observer ref="observer" v-slot="{ invalid }">
+  <!-- <validation-observer ref="observer" v-slot="{ invalid }"> -->
     <form @submit.prevent="submit">
       <v-container>
         <v-col class="mb-4">
@@ -9,14 +9,13 @@
         <v-row>
           <v-col cols="12" md="4">
             <validation-provider
-              v-slot="{ errors }"
               name="Imie"
               rules="required|max:10"
             >
               <v-text-field
-                v-model="name"
+                disabled
+                v-model="client.name"
                 :counter="10"
-                :error-messages="errors"
                 label="Imie"
                 required
               ></v-text-field>
@@ -24,14 +23,13 @@
           </v-col>
           <v-col cols="12" md="4">
             <validation-provider
-              v-slot="{ errors }"
               name="Nazwisko"
               rules="required|max:10"
             >
               <v-text-field
-                v-model="surName"
+                disabled
+                v-model="client.surname"
                 :counter="10"
-                :error-messages="errors"
                 label="Nazwisko"
                 required
               ></v-text-field>
@@ -39,13 +37,12 @@
           </v-col>
           <v-col cols="12" md="4">
             <validation-provider
-              v-slot="{ errors }"
               name="E-mail"
               rules="required|email"
             >
               <v-text-field
-                v-model="email"
-                :error-messages="errors"
+                disabled
+                v-model="client.email"
                 label="E-mail"
                 required
               ></v-text-field>
@@ -58,13 +55,12 @@
         <v-row>
           <v-col cols="12" md="6">
             <validation-provider
-              v-slot="{ errors }"
               name="Adres zamieszkania"
               rules="required|max:10"
             >
               <v-text-field
-                v-model="adress"
-                :error-messages="errors"
+                disabled
+                v-model="client.adress"
                 label="Adres zamieszkania"
                 required
               ></v-text-field>
@@ -72,7 +68,7 @@
           </v-col>
           <v-col cols="12" md="6">
             <validation-provider
-              v-slot="{ errors }"
+              disabled
               name="Numer telefonu"
               :rules="{
               required: true,
@@ -80,37 +76,18 @@
               }"
             >
               <v-text-field
-                v-model="phoneNumber"
+                disabled
+                v-model="client.phoneNumber"
                 :counter="9"
-                :error-messages="errors"
                 label="Numer telefonu"
                 required
               ></v-text-field>
             </validation-provider>
           </v-col>
         </v-row>
-
-        <!-- <validation-provider
-          v-slot="{ errors }"
-          rules="required"
-          name="checkbox"
-        >
-          <v-checkbox
-            v-model="checkbox"
-            :error-messages="errors"
-            value="1"
-            label="Akceptuje politykę prywatności"
-            type="checkbox"
-            required
-          ></v-checkbox>
-        </validation-provider>
-        <v-btn class="mr-4" type="submit" :disabled="invalid"> Zapisz </v-btn>
-        <v-btn @click="clear">
-        Wyczyść
-        </v-btn> -->
       </v-container>
     <v-container>
-      <v-col class="mb-4">
+        <v-col class="mb-4">
           <h1 class="display-1 mb-1">Dane samochodu</h1>
           <v-divider></v-divider>
         </v-col>
@@ -118,8 +95,10 @@
         <v-col 
         cols="12" 
         sm="6">
-          <v-select
-          :items="car"
+          <v-select 
+          disabled
+          v-model="car" 
+          :items="carItems"
           label="Samochód"
           solo></v-select>
         </v-col>
@@ -127,7 +106,9 @@
         cols="12" 
         sm="6">
           <v-select 
-          :items="engine" 
+          disabled
+          v-model="engine"
+          :items="engineItems" 
           label="Moc silnika" 
           solo></v-select>
         </v-col>
@@ -140,7 +121,9 @@
         cols="12" 
         sm="4">
           <v-select 
-          :items="color" 
+          disabled
+          v-model="color"
+          :items="colorItems" 
           label="Kolor samochodu" 
           solo></v-select>
         </v-col>
@@ -149,7 +132,9 @@
         cols="12" 
         sm="4">
           <v-select 
-          :items="type" 
+          disabled
+          v-model="type"
+          :items="typeItems" 
           label="Typ nadwozia" 
           solo></v-select>
         </v-col>
@@ -157,7 +142,9 @@
         cols="12" 
         sm="4">
           <v-select 
-          :items="transmission" 
+          disabled
+          v-model="transmission"
+          :items="transmissionItems" 
           label="Skrzynia biegów" 
           solo></v-select>
         </v-col>
@@ -193,34 +180,29 @@
         </v-col>
       </v-row> -->
 
-      <validation-provider
-          v-slot="{ errors }"
-          rules="required"
-          name="checkbox"
-        >
-          <v-checkbox
-            v-model="checkbox"
-            :error-messages="errors"
-            value="1"
-            label="Akceptuje politykę prywatności"
-            type="checkbox"
-            required
-          ></v-checkbox>
-        </validation-provider>
-        <v-btn class="mr-4" type="submit" :disabled="invalid"> Zapisz </v-btn>
-        <v-btn @click="clear">
-        Wyczyść
-        </v-btn>
+        <v-col cols="12" md="4">
+              <v-text-field
+              disabled
+              v-model="client.price"
+              label="Kwota za zamówienie"
+              ></v-text-field>
+        </v-col>
+        <!-- <v-card-action> -->
+        <!-- <v-btn @click="save" class="mr-4" type="submit"> Zapisz Dane</v-btn> -->
+        <!-- <v-btn @click="clear">Wyczyść dane osobowe</v-btn> -->
+        <!-- </v-card-action> -->
+
+
     </v-container>
 
 
     </form>
-  </validation-observer>
+  <!-- </validation-observer> -->
 </template>
 
 <script>
 import { required, digits, email, max, } from 'vee-validate/dist/rules'
-import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import { extend, ValidationProvider, setInteractionMode } from 'vee-validate'
 
 setInteractionMode('eager')
 
@@ -245,22 +227,34 @@ extend('email', {
 })
 
 export default {
+  mounted(){
+    this.context = window.coachViewContext;
+    this.initData();
+  },
   components: {
     ValidationProvider,
-    ValidationObserver,
+    // ValidationObserver,
   },
+  
   data: () => ({
-    name: '',
-    surName: '',
-    adress: '',
-    phoneNumber: '',
-    email: '',
-    checkbox: null,
-    car: ['Audi', 'BMW', 'BENTLEY', 'Ferrari'],
-    engine: ['2.0','2.5','3.0','5.0'],
-    color: ['czarny', 'biały', 'czerwony', 'zielony'],
-    type: ['Coupe', 'Sedan', 'Kabriolet', 'Kombi'],
-    transmission: ['manualna', 'automatyczna']
+    context: null,
+    client: {},
+    // name: {},
+    // surname: {},
+    // adress: {},
+    // phoneNumber: {},
+    // email: {},
+    // price: {}, 
+    carItems: ['Audi', 'BMW', 'BENTLEY', 'Ferrari'],
+    car: null,
+    engineItems: ['2.0','2.5','3.0','5.0'],
+    engine: null,
+    colorItems: ['czarny', 'biały', 'czerwony', 'zielony'],
+    color: null,
+    typeItems: ['Coupe', 'Sedan', 'Kabriolet', 'Kombi'],
+    type: null,
+    transmissionItems: ['manualna', 'automatyczna'],
+    transmission: null,
   }),
 
   methods: {
@@ -268,14 +262,42 @@ export default {
       this.$refs.observer.validate()
     },
     clear () {
-      this.name = ''
-      this.surName = ''
-      this.adress = ''
-      this.phoneNumber = ''
-      this.email = ''
-      this.checkbox = null
-      this.$refs.observer.reset()
+      this.client.name = ''
+      this.client.surname = ''
+      this.client.adress = ''
+      this.client.phoneNumber = ''
+      this.client.email = ''
+      this.car = ''
+      this.engine = ''
+      this.color = ''
+      this.type = ''
+      this.transmission = ''
+      this.client.price = ''
+      // this.$refs.observer.reset()
     },
+    initData() {
+      this.client = this.context.binding.get("value")
+      
+      this.car = this.context.options.car.get("value");
+      this.engine = this.context.options.engine.get("value");
+      this.color = this.context.options.color.get("value");
+      this.type = this.context.options.type.get("value");
+      this.transmission = this.context.options.transmission.get("value");
+      },
+    save() {
+      this.context.binding.set("value", this.client)
+
+      this.context.options.car.set("value", this.car);
+      this.context.options.engine.set("value", this.engine);
+      this.context.options.color.set("value", this.color);
+      this.context.options.type.set("value", this.type);
+      this.context.options.transmission.set("value", this.transmission);
+      
+      this.context.trigger();
+    }
+  },
+  watch: {
+    
   },
 }
 </script>

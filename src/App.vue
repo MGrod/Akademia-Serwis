@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
       color="primary"
       dark
@@ -35,24 +35,20 @@
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar> -->
 
     <v-main>
       <!-- <HelloWorld/> -->
-      <!-- <ClientData/> -->
-      <!-- <CarDetails/> -->
-      <Form1/>
-      <!-- <test2/> -->
+      <!-- <SimpleFormDis/> -->
+      <SimpleForm/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld';
-// import ClientData from './subcomponents/ClientData.vue';
-// import CarDetails from './subcomponents/CarDetails.vue';
-import Form1 from './components/Form1.vue';
-// import test2 from './components/test2.vue';
+// import SimpleFormDis from './components/SimpleFormDis.vue'
+import SimpleForm from './components/SimpleForm.vue';
 
 
 export default {
@@ -60,10 +56,8 @@ export default {
 
   components: {
     // HelloWorld,
-    // ClientData,
-    // CarDetails,
-    Form1,
-    // test2
+    // SimpleFormDis,
+    SimpleForm
   },
 
   data: () => ({
